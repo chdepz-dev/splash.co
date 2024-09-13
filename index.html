@@ -5,17 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
       rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <title>Splash Home</title>
   </head>
   <body>
-    <h1>
-      Hello world? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Repellat, praesentium!
-    </h1>
+    <main>
+      <header>
+        <nav>
+          <div class="logo">
+            <!-- <img src="./logo.png" alt="" /> -->
+            <h1>splash.</h1>
+          </div>
+          <ul class="nav-links" id="navLinks">
+            <li>colllections</li>
+            <li>challenges</li>
+            <li>leaderboard</li>
+            <li>plugins</li>
+          </ul>
+          <div class="hamburger" id="ham">
+            <span class="span" id="span"></span>
+            <span class="span" id="span"></span>
+            <span class="span" id="span"></span>
+          </div>
+        </nav>
+      </header>
+      <div class="hero">
+        <div class="hero-title">
+          <h1>
+            The best free stock photos, royalty free images & videos shared by
+            creators.
+          </h1>
+        </div>
+        <div class="search">
+          <input type="text" id="input" placeholder="search" />
+          <button class="search-btn" id="submit">search</button>
+        </div>
+      </div>
+      <div class="hotlinks">
+         <div class="links-hot">Home</div>
+         <div class="links-hot">videos</div>
+         <div class="links-hot">leaderboard</div>
+         <div class="links-hot">challenges</div>
+      </div>
+      <div class="gallery-head-info">
+        <h2>Now Showing</h2>
+      </div>
+  <section class="gallery-container">
+        <!-- main gallery wrapper -->
+    <div class="masonry-grid" id="gallery">
+       <div class="grid-item">
+        <img src="" alt="">
+        </div>
+     </div>
+    </div>
+  </section>
+  <div class="pagination">
+    <button id="prev">Prev</button>
+    <button id="next">Next</button>
+  </div>
+
+  <section class="footer">
+    <h1>copyright@2024.</h1>
+    <h1>github/chdepz-dev</h1>
+  </section>
+    </main>
+
     <script src="app.js"></script>
   </body>
 </html>
