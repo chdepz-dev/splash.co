@@ -43,13 +43,14 @@ menuBtn.addEventListener("click", () => {
     navLinks.classList.toggle("open")
 })
 
-async function fetchPhotos(){
+async function fetchPhotos() {
     try {
         const response = await fetch(`${ApiUrl}curated/?page=${pagination}&per_page=9`, options)
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
+        gallery.innerHTML = ""
         const photos = data.photos;
-        photos.forEach((photo) =>{
+        photos.forEach((photo) => {
             const div = document.createElement("div")
             div.className = "grid-item"
             const img = document.createElement("img")
@@ -65,13 +66,14 @@ async function fetchPhotos(){
 fetchPhotos()
 
 
-async function searchPhotos(keyword){
+async function searchPhotos(keyword) {
     try {
         const response = await fetch(`${ApiUrl}search/?page=${pagination}&per_page=13&query=${keyword}`, options)
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
+        gallery.innerHTML = "";
         const photos = data.photos;
-        photos.forEach((photo) =>{
+        photos.forEach((photo) => {
             const div = document.createElement("div")
             div.className = "grid-item"
             const img = document.createElement("img")
@@ -84,10 +86,17 @@ async function searchPhotos(keyword){
         console.log(`Opps Something went wrong: `, error)
     }
 }
-
-submitBtn.addEventListener("click", ()=>{
+// function for scrolling back to gallery
+function scrollToGallery() {
+    const galleryPosition = gallery.getBoundingClientRect().top * window.scrollY;
+    window.scrollTo({
+        top: galleryPosition - 100,
+        behavior: "smooth"
+    })
+}
+submitBtn.addEventListener("click", () => {
     const keyword = searchInput.value.toString().trim();
-    if(keyword === ""){
+    if (keyword === "") {
         alert(`You must provide search keywords.`)
         return
     }
@@ -95,5 +104,28 @@ submitBtn.addEventListener("click", ()=>{
     pagination = 1;
     isSearchActive = true;
     searchPhotos(currentKeyword)
+    scrollToGallery()
 })
+
+nextBtn.addEventListener("click", () => {
+    pagination++
+    if (isSearchActive) {
+        searchPhotos(currentKeyword)
+    } else {
+        fetchPhotos()
+    }
+    scrollToGallery()
+})
+prevBtn.addEventListener("click", () => {
+    if (pagination > 1) {
+        pagination--
+    }
+    if (isSearchActive) {
+        searchPhotos(keyword)
+    } else {
+        fetchPhotos()
+    }
+    scrollToGallery()
+})
+
 
