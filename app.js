@@ -8,7 +8,8 @@ const submitBtn = document.getElementById("submit")
 const nextBtn = document.getElementById("next")
 const prevBtn = document.getElementById("prev")
 const modalContainer = document.getElementById("modal")
-
+const modalClose = document.getElementById("close")
+const modalImg = document.getElementById("modal-img")
 
 //Api config
 const apiKey = "1c3HzNXWDXN2d3pdkshVn5GrPV7Dd5TIDZ0JoIWf9NgQQ5ZgtlDFLUfQ"
@@ -47,7 +48,7 @@ async function fetchPhotos() {
     try {
         const response = await fetch(`${ApiUrl}curated/?page=${pagination}&per_page=9`, options)
         const data = await response.json();
-        // console.log(data)
+        console.log(data)
         gallery.innerHTML = ""
         const photos = data.photos;
         photos.forEach((photo) => {
@@ -55,9 +56,18 @@ async function fetchPhotos() {
             div.className = "grid-item"
             const img = document.createElement("img")
             img.src = photo.src.original;
-            img.alt = photo.photographer;
+            img.alt = photo.alt;
             div.appendChild(img)
             gallery.appendChild(div)
+            let h1 = document.createElement("h1")
+            h1.textContent = `Photo By ${photo.photographer}`;
+            div.appendChild(h1)
+            img.addEventListener("click", () => {
+                modalContainer.classList.toggle("active");
+                modalImg.src = photo.src.original
+                console.log("clicked")
+            })
+
         })
     } catch (error) {
         console.log(`Opps Something went wrong: `, error)
@@ -79,8 +89,19 @@ async function searchPhotos(keyword) {
             const img = document.createElement("img")
             img.src = photo.src.original;
             img.alt = photo.photographer;
+            let h1 = document.createElement("h1")
+            h1.textContent = `Photo By ${photo.photographer}`;
+            div.appendChild(h1)
             div.appendChild(img)
             gallery.appendChild(div)
+
+            img.addEventListener("click", () => {
+                modalContainer.classList.toggle("active");
+                modalImg.src = photo.src.original
+                console.log("clicked")
+            })
+
+
         })
     } catch (error) {
         console.log(`Opps Something went wrong: `, error)
@@ -88,9 +109,9 @@ async function searchPhotos(keyword) {
 }
 // function for scrolling back to gallery
 function scrollToGallery() {
-    const galleryPosition = gallery.getBoundingClientRect().top * window.scrollY;
+    const galleryPosition = gallery.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({
-        top: galleryPosition - 100,
+        top: galleryPosition - 180,
         behavior: "smooth"
     })
 }
@@ -128,4 +149,9 @@ prevBtn.addEventListener("click", () => {
     scrollToGallery()
 })
 
+
+// modal functions
+modalClose.onclick = function () {
+    modalContainer.classList.toggle("active")
+}
 

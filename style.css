@@ -180,6 +180,7 @@ nav {
   /* max-width: 1200px; */
 }
 .grid-item {
+  position: relative;
   background-color: #fff;
   display: inline-block;
   margin-bottom: 15px;
@@ -193,6 +194,17 @@ nav {
   display: block;
   object-fit: cover;
   cursor: pointer;
+}
+.grid-item h1{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 5px;
+  padding: 0px 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
 }
 .pagination {
   width: 100%;
@@ -236,7 +248,8 @@ nav {
   text-align: center;
   font-size: 40px;
 }
-.modal{
+/* .modal{
+  display: none;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   width: 80%;
@@ -247,7 +260,52 @@ nav {
   border-radius: 30px;
   
  
+} */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  padding: 30px 0px;
+  left: 50%;
+  top: 55%;
+  width: 80%; 
+  height: 80%; 
+
+  transform: translate(-50%, -50%);
+  background-color: rgb(0, 0, 0); 
+  background-color: rgba(0, 0, 0, 0.9); 
 }
+.modal.active{
+  display: flex;
+}
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 400px;
+  object-fit: cover;
+}
+
+
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 @media (max-width: 760px) {
   .hero-title {
     width: 100%;
