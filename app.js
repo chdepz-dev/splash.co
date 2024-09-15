@@ -48,7 +48,7 @@ async function fetchPhotos() {
     try {
         const response = await fetch(`${ApiUrl}curated/?page=${pagination}&per_page=9`, options)
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
         gallery.innerHTML = ""
         const photos = data.photos;
         photos.forEach((photo) => {
@@ -65,7 +65,7 @@ async function fetchPhotos() {
             img.addEventListener("click", () => {
                 modalContainer.classList.toggle("active");
                 modalImg.src = photo.src.original
-                console.log("clicked")
+              
             })
 
         })
